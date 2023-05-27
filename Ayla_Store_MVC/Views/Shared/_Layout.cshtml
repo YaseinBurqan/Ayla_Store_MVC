@@ -1,5 +1,4 @@
-﻿@model IEnumerable<Category>
-
+﻿
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,6 +27,7 @@
 
     <!-- Template Main CSS File -->
     <link href="~/assets/css/style.css" rel="stylesheet">
+    <link href="~/assets/css/myStyle.css" rel="stylesheet">
 
     <!-- =======================================================
     * Template Name: Techie
@@ -36,6 +36,9 @@
     * Author: BootstrapMade.com
     * License: https://bootstrapmade.com/license/
     ======================================================== -->
+    <!-- Updated jQuery reference -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 
 <body>
@@ -43,7 +46,7 @@
     <!-- ======= Header ======= -->
     <header id="header" class="fixed-top ">
         <div class="container d-flex align-items-center justify-content-between">
-            <h1 class="logo"><a href="index.html">Ayla Store</a></h1>
+            <h1 class="logo"><a asp-action="Index">Ayla Store</a></h1>
             <!-- Uncomment below if you prefer to use an image logo -->
             <!-- <a href="index.html" class="logo"><img src="~/assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -52,41 +55,52 @@
                     <li>
                         <div>
                             <div class="input-group">
-                                <form accept-charset="utf-8" class="input-group" asp-action="ProductSearch" method="post">
-                                    <div class="form-outline">
-                                        <input type="search" id="form1" class="form-control" placeholder="Search" style="border-radius:10px 0 0 10px;" />
+                                <form class="input-group" asp-controller="Home" asp-action="ProductSearch" method="get">
+                                    <div class="form-outline" style=" width:200px">
+                                        <input type="text" id="name" name="name" class="form-control" placeholder="Search" style="border-radius:10px 0 0 10px;" />
                                     </div>
-                                    <button type="button" name="name" id="name" class="btn btn-primary" style="border-radius:0 10px 10px 0;">
-                                        go
+                                    <button type="submit" class="btn btn-primary" style="border-radius:0 10px 10px 0;">
+                                        Search
                                     </button>
                                 </form>
                             </div>
                         </div>
                     </li>
 
-                    <li><a class="nav-link scrollto active" href="/Home/Index">Home</a></li>
-                    <li class="dropdown">
-                        <a href="/Home/Categories"><span>Categories</span> <i class="bi bi-chevron-down"></i></a>
-                        <ul>
-                            @foreach (var item in Model)
-                            {
-                                <li>
-                                    <a href="/Home/Products/@item.Id">@item.Name</a>
-                                </li>
-
-                            }
-                            <li class="dropdown">
-                                <a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
-                                <ul>
-                                    <li><a href="#">Deep Drop Down 1</a></li>
-                                    <li><a href="#">Deep Drop Down 2</a></li>
-                                    <li><a href="#">Deep Drop Down 3</a></li>
-                                    <li><a href="#">Deep Drop Down 4</a></li>
-                                    <li><a href="#">Deep Drop Down 5</a></li>
-                                </ul>
-                            </li>
-                        </ul>
+                    <li>
+                        <a asp-area="" asp-controller="Home" asp-action="Index"><span>Home</span></a>
                     </li>
+
+                    <li>
+                        <a asp-controller="Home" asp-action="Categories"><span>Categories</span></a>
+                    </li>
+
+                    <li>
+                        <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index"><span>Dashboard</span></a>
+                    </li>
+
+                    @* <li class="dropdown">
+                    <a href="/Home/Categories"><span>Categories</span> <i class="bi bi-chevron-down"></i></a>
+                    <ul>
+                    @foreach (var item in Model)
+                    {
+                    <li>
+                    <a href="/Home/Products/@item.Id">@item.Name</a>
+                    </li>
+
+                    }
+                    <li class="dropdown">
+                    <a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
+                    <ul>
+                    <li><a href="#">Deep Drop Down 1</a></li>
+                    <li><a href="#">Deep Drop Down 2</a></li>
+                    <li><a href="#">Deep Drop Down 3</a></li>
+                    <li><a href="#">Deep Drop Down 4</a></li>
+                    <li><a href="#">Deep Drop Down 5</a></li>
+                    </ul>
+                    </li>
+                    </ul>
+                    </li>*@
 
                     <li><a class="getstarted scrollto" href="/Home/Cart">Cart</a></li>
                 </ul>
@@ -95,108 +109,10 @@
 
         </div>
     </header><!-- End Header -->
-    <!-- ======= Hero Section ======= -->
-    <section id="hero" class="d-flex align-items-center">
-
-        <div class="container-fluid" data-aos="fade-up">
-            <div class="row justify-content-center">
-                <div class="col-xl-5 col-lg-6 pt-3 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
-                    <h1>Ayla Store</h1>
-                    <h2>Have fun shopping on our site</h2>
-                    <div><a href="#about" class="btn-get-started scrollto">Get Started</a></div>
-                </div>
-                <div class="col-xl-4 col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="150">
-                    <img src="~/assets/img/hero-img.png" class="img-fluid animated" alt="">
-                </div>
-            </div>
-        </div>
-
-    </section><!-- End Hero -->
 
     <main id="main">
 
         @RenderBody()
-
-        <!-- ======= Contact Section ======= -->
-        <section id="contact" class="contact section-bg">
-            <div class="container" data-aos="fade-up">
-
-                <div class="section-title">
-                    <h2>Contact</h2>
-                    <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="info-box mb-4">
-                            <i class="bx bx-map"></i>
-                            <h3>Our Address</h3>
-                            <p>Alsadd Street, Doha,Qatar</p>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="info-box  mb-4">
-                            <i class="bx bx-envelope"></i>
-                            <h3>Email Us</h3>
-                            <p>
-                                <a href="mailto:mr.yasein@gmail.com">
-                                    mr.yasein@gmail.com
-                                </a>
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="info-box  mb-4">
-                            <i class="bx bx-phone-call"></i>
-                            <h3>Call Us</h3>
-                            <p>
-                                <a href="tel:+97431329833">
-
-                                    +974 31329833
-                                </a>
-                            </p>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="row">
-
-                    <div class="col-lg-6 ">
-                        <iframe class="mb-4 mb-lg-0" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" style="border:0; width: 100%; height: 384px;" allowfullscreen></iframe>
-                    </div>
-
-                    <div class="col-lg-6">
-                        <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-                            <div class="row">
-                                <div class="col-md-6 form-group">
-                                    <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-                                </div>
-                                <div class="col-md-6 form-group mt-3 mt-md-0">
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
-                                </div>
-                            </div>
-                            <div class="form-group mt-3">
-                                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
-                            </div>
-                            <div class="form-group mt-3">
-                                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
-                            </div>
-                            <div class="my-3">
-                                <div class="loading">Loading</div>
-                                <div class="error-message"></div>
-                                <div class="sent-message">Your message has been sent. Thank you!</div>
-                            </div>
-                            <div class="text-center"><button type="submit">Send Message</button></div>
-                        </form>
-                    </div>
-
-                </div>
-
-            </div>
-        </section><!-- End Contact Section -->
 
     </main><!-- End #main -->
     <!-- ======= Footer ======= -->
@@ -213,7 +129,7 @@
                             New York, NY 535022<br>
                             United States <br><br>
                             <strong>Phone:</strong> +1 5589 55488 55<br>
-                            <strong>Email:</strong> info@example.com<br>
+                            <strong>Email:</strong>  info@example.com<br>
                         </p>
                     </div>
 

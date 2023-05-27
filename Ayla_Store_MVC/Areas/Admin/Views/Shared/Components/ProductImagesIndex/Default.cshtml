@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Ayla_Store_MVC.Models.ProductImage>
+
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4">
+                <div class="card-header pb-0" style="margin:auto">
+                    <table class="table align-items-center mb-0">
+                        <thead>
+                            <tr>
+                                <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-9">
+                                    Product Images
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="row" style="margin:auto">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-md-3 text-center" style="width:250px;height:200px;">
+                            <img src="https://localhost:51755/upload/@item.Image" class="mb-0 text-sm" style="max-width:100%;max-height:80%;border-radius:7px;" />
+                            <div>
+                                <a asp-controller="ProductImages" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                <a asp-controller="ProductImages" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                                <a asp-controller="ProductImages" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

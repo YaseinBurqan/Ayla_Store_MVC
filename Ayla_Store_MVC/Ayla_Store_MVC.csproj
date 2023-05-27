@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>net7.0</TargetFramework>
-		<Nullable>enable</Nullable>
+		<Nullable>disable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<UserSecretsId>aspnet-Ayla_Store_MVC-f2d977f3-0479-4c9e-aac4-5c9477746952</UserSecretsId>
 	</PropertyGroup>
@@ -16,5 +16,10 @@
 		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.5" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.5" />
 		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.6" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Areas\Admin\Data\" />
+		<Folder Include="Views\Products\" />
 	</ItemGroup>
 </Project>

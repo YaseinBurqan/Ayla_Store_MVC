@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+@{
+    ViewData["Title"] = "Products Chart";
+}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<div style="max-width:900px;max-height:550px;">
+    <canvas id="myChart"></canvas>
+</div>
+
+<script>
+    var labels = [];
+    var prices = [];
+    var quantities = [];
+
+    $(document).ready(function () {
+        $.ajax({
+            url: "https://localhost:44357/api/values/GetAllProducts",
+            type: 'GET',
+            contentType: "application/json; charset=utf-8",
+            dataType: 'json',
+            success: function (response) {
+                labels = response.$values.map(item => item.name);
+                prices = response.$values.map(item => item.price);
+                quantities = response.$values.map(item => item.quantity);
+
+                // Create the chart after fetching data
+                createChart();
+            }
+        });
+    });
+
+    function createChart() {
+        const ctx = document.getElementById('myChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [
+                    {
+                        label: 'Prices',
+                        data: prices,
+                        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Quantities',
+                        data: quantities,
+                        backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+</script>
