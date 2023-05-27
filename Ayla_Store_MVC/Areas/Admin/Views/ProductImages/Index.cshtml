@@ -1,0 +1,65 @@
+﻿@model IEnumerable<dynamic>
+
+@{
+    ViewData["Title"] = "Product's Images";
+}
+
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card-header pb-0">
+                <table class="table align-items-center mb-0">
+                    <thead>
+                        <tr>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                <p><a asp-action="Create">Create New</a></p>
+                                <h6>Products Images</h6>
+                            </th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@foreach (var item in Model)
+{
+    var product = (Product)item.Product;
+    var images = (List<ProductImage>)item.Images;
+
+    <div class="container-fluid py-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="card mb-4">
+                    <div class="card-header pb-0">
+                        <table class="table align-items-center mb-0">
+                            <thead>
+                                <tr>
+                                    <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-9">
+                                        @product.Name
+                                    </th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <div class="row">
+                        @foreach (var image in images)
+                        {
+                            <div class="col-md-3 text-center" style="width250px;height:200px;">
+                                <img src="@Html.DisplayFor(modelItem => image.Image)" class="mb-0 text-sm" style="max-width:100%;max-height:80%;border-radius:7px;" />
+                                <div>
+                                    <a asp-action="Edit" asp-route-id="@image.Id">Edit</a> |
+                                    <a asp-action="Details" asp-route-id="@image.Id">Details</a> |
+                                    <a asp-action="Delete" asp-route-id="@image.Id">Delete</a>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

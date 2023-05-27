@@ -1,0 +1,15 @@
+﻿@model Ayla_Store_MVC.Models.Product
+
+<div class="col-lg-4 col-md-6 portfolio-item @Model.Category.Name">
+    <div class="portfolio-wrap">
+        <img src="../@Model.Photo" class="img-fluid" alt="">
+        <div class="portfolio-info">
+            <h4>@Model.Name</h4>
+            <p>$@Model.Price</p>
+        </div>
+        <div class="portfolio-links">
+            <a href="../@Model.Photo" data-gallery="portfolioGallery" class="portfolio-lightbox" title="@Model.Name"><i class="bx bx-plus"></i></a>
+            <a asp-controller="Home" asp-action="CurrentProduct" asp-route-id="@Model.Id" title="More Details"><i class="bx bx-link"></i></a>
+        </div>
+    </div>
+</div>

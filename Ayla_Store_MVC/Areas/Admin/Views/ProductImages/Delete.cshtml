@@ -1,0 +1,63 @@
+﻿@model Ayla_Store_MVC.Models.ProductImage
+
+@{
+    ViewData["Title"] = "Delete Product Image";
+}
+
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4">
+                <div class="card-header pb-0">
+                    <table class="table align-items-center mb-0">
+                        <thead>
+                            <tr>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                    <h6>Delete Image</h6>
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="card-body px-0 pt-0 pb-2">
+                    <table class="table align-items-center mb-0">
+                        <tr>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                @Html.DisplayNameFor(model => model.Product)
+                            </th>
+                            <td>
+                                <div class="d-flex px-2 py-1">
+                                    <div class="d-flex flex-column justify-content-center">
+                                        <h6 class="mb-0 text-sm">
+                                            @Html.DisplayFor(model => model.Product.Name)
+                                        </h6>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="border-bottom-width:0">
+                                @Html.DisplayNameFor(model => model.Image)
+                            </th>
+                            <td>
+                                <div class="d-flex px-2 py-1">
+                                    <div class="d-flex flex-column justify-content-center">
+                                        <img src="@Html.DisplayFor(model => model.Image)" class="mb-0 text-sm" style="max-width:400px;max-height:400px" />
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div>
+                <form asp-action="Delete">
+                    <input type="hidden" asp-for="Id" />
+                    <input type="submit" value="Delete" class="btn btn-danger" /> |
+                    <a asp-action="Index">Back to List</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
